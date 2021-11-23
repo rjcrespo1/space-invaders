@@ -1,5 +1,8 @@
-const bullets = [];
+const bullet = [];
 const aliens = [];
+
+
+  
 
 let canvas = document.getElementById('myCanvas');
 
@@ -35,6 +38,7 @@ class Sprite {
     loadImage() {
         const img = new Image();
         img.src = this.image;
+        // console.log({alien: this})
         img.addEventListener("load", () => {
             this.image = img;
             this.draw();
@@ -54,7 +58,7 @@ class Ship extends Sprite {
         let rightLimit = canvas.width - this.width
         rightLimit = rightLimit - 25
         if(this.x < rightLimit && e.key === "ArrowRight") {
-            console.log(this.speed)
+            // console.log(this.speed)
           this.x += 7;
         }
         if(this.x > 30 && e.key === "ArrowLeft") {
@@ -62,6 +66,8 @@ class Ship extends Sprite {
         }
     }
 }
+
+
 
 // document.addEventListener('keydown', function(e) {
 //     // console.log(e.which);
@@ -79,33 +85,30 @@ class Ship extends Sprite {
 //   });
 
 const ship = new Ship();
-async function shipImageLoad() {
-    await ship.loadImage();
+function shipImageLoad() {
+    ship.loadImage();
 }
 
 shipImageLoad();
 
 
 class Alien extends Sprite {
-    constructor(imagez, xz, yz, widthz, heightz, speedz) {
-        super(imagez, xz, yz, widthz, heightz, speedz)
-        // this.image = imagez
-        // this.x = xz
-        // this.y = yz
-        // this.width = widthz
-        // this.height = heightz
-        // this.speed = speedz
-        // super("./images/alien.png", 0, 0, 50, 50, 0)
-        // super(imagez, xz, yz, widthz, heightz, speedz)
+    constructor(image, x, y, width, height, speed) {
+        super(image, x, y, width, height, speed)
+        
     }
     
     
 }
 
 
-const alien = new Alien();
-async function alienImageLoad() {
-    await alien.loadImage();
+// const alien = new Alien();
+function alienImageLoad() {
+    // alien.loadImage();
+    aliens.forEach(alien => {
+        // console.log({alien})
+        alien.loadImage();
+    })
 }
 
 alienImageLoad();
@@ -119,31 +122,38 @@ alienImageLoad();
 
 const generateAliens = () => {
     let rowX = 0;
-    let colY = 0
-    for (let row = 0; row < 3; row++) {
+    let colY = 0;
+    for (let row = 0; row < 4; row++) {
         for (let col = 0; col < 10; col++) {
             // aliens.push(alien);
             aliens.push(new Alien("./images/alien.png", rowX, colY, 50, 50, 0))
-            rowX += 55;
+            rowX += 70;
         }
         rowX = 0;
-        colY += 55;
+        colY += 70;
     }
 }
 generateAliens();
 
-// bullet.x = (this.ship.x + this.ship.width) / 2
-// bullet.y = ((this.ship.y + this.ship.width) / 2) + 5
+
+const generateBullets = () => {
+    bullet.x = (this.ship.x + this.ship.width) / 2
+    bullet.y = ((this.ship.y + this.ship.width) / 2) + 5
+}
+// generateBullets();
+
 
 function redraw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ship.draw();
-    alien.draw();
+    aliens.forEach(alien => {
+        alien.draw();
+    })
 }
 
 // redraw();
 
-async function startGame() {
+function startGame() {
 
      shipImageLoad();
      alienImageLoad();
