@@ -3,9 +3,11 @@
     <head>
         <meta charset='UTF-8'/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Space Invaders</title>
-        <style>
+        <link rel="stylesheet" href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+        <!-- <style>
             /* body {
                 margin: 0;
             }
@@ -14,13 +16,30 @@
             } */
             * { padding: 0; margin: 0; }
             canvas { background: #000000; display: block; margin: 0 auto; }
-        </style>
-        <link rel="stylesheet" href="style.css">
+        </style> -->
+        <!-- <link rel="stylesheet" href="style.css"> -->
     </head>
     <body>
+        <div class = "wrap">
+            <header>SPACE INVADERS</header>
+            <div class = "game-wrap">
+                <div class="main"></div>
+                    <div class = "win">
+                        <h1>YOU WIN!</h1>
+                        <h2>Great Job!</h2>
+                        <button class="btn" onclick="window.location.reload()">Restart</button>
+                    </div>
+                    <div class="lose">
+                        <h1>GAME OVER!</h1>
+                        <h2>Try Again!</h2>
+                        <button class="btn" onclick="window.location.reload()">Restart</button>
+                    </div>
+            </div>
+            <script src="index.js"></script>
+            <footer>SPACE INVADERS</footer>
+        </div>
+        <!-- <canvas id="myCanvas"></canvas> -->
 
-        <canvas id="myCanvas"></canvas>
-
-        <script tytpe="text/javascript" src ="index.js"></script>
+        <!-- <script tytpe="text/javascript" src ="index.js"></script> -->
     </body>
 </html>
